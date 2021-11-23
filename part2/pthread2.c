@@ -16,7 +16,7 @@ void *genFibo(void *param); /* the thread */
 int main(int argc, char *argv[])
 
 {
-
+ long int i;
    pthread_attr_t attr;
 
    if (argc != 2) {
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
    // each thread computes fibonacci
 
-   for(int i = 1;i <= count;i++) {
+   for(i = 1;i <= count;i++) {
 
    pthread_t thread;
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
    // print resulting array
 
-   for (int i = 0; i < in;i++) {
+   for (i = 0; i < in;i++) {
 
    printf("%d ", fib[i]);
 
@@ -75,7 +75,7 @@ void *genFibo(void *param)
 
    pthread_mutex_lock(&mutex);
 
-   fib[in++] = fibonacci((int)param);
+   fib[in++] = fibonacci((long int)param);
 
    pthread_mutex_unlock(&mutex);
 
