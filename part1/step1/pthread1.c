@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 		}
 		
 	}
-	printf("Success!\n");
+	//printf("Success!\n");
 
         num_t = atoi(argv[1]);
 	
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 
 	}
 
-	printf("from commandline: %d\n", argc);
+	//printf("from commandline: %d\n", argc);
 
 	long int j;
 	pthread_t tid[num_t];

@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 		}
 		
 	}
-	printf("Success!\n");
+	//printf("Success!\n");
 
     num_t = atoi(argv[1]);
     //validating for umbers only on commandline input
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	//barrier declaration
 	rc = pthread_barrier_init(&barrier, NULL, num_t);
 	
-	printf("from commandline: %d\n", argc);
+	//printf("from commandline: %d\n", argc);
 
 	long int j;
 	pthread_t tid[num_t];
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 	{
 	   pthread_join(tid[j], NULL);
 	}
-	detstroy
+
 	return 0;
 }
  
