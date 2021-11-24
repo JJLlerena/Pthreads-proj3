@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
    }
 
    // print resulting array
-
+   pritnf("0");
    for (i = 0; i < in;i++) {
 
    printf("%d ", fib[i]);
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
    }
 
    printf("\n");
-   printf("sum = 0 %ld\n", sum);
+   printf("sum = %ld\n", sum);
    pthread_mutex_destroy(&mutex);
 
 }
