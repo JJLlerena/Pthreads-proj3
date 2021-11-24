@@ -13,9 +13,9 @@ void *SimpleThread(void* which)
 	long int tid;
 	tid = (long int)which;
 	int num, val;
+
 	for(num = 0; num < 20; num++)
 	{
-
 		if(random() > RAND_MAX/2)
 			usleep(10);
 
@@ -74,13 +74,14 @@ int main(int argc, char *argv[])
 
 	long int j;
 	pthread_t tid[num_t];
-	for(j =0; j<num_t ; j++)
+	//loop to create threads
+    for(j =0; j<num_t ; j++)
 	{ 
 	    	
 	  pthread_create(&tid[j], NULL, SimpleThread, (void *)j);
 	     
 	}
-	
+	//closing threads
  	for(j = 0; j < num_t; j++)
 	{
 	   pthread_join(tid[j], NULL);

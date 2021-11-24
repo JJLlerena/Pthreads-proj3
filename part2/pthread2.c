@@ -10,6 +10,7 @@ pthread_mutex_t mutex;
 int fib[10]; /* this data is shared by the thread(s) */
 
 int in = 0;
+long int sum = 0;
 
 void *genFibo(void *param); /* the thread */
 
@@ -18,17 +19,17 @@ int main(int argc, char *argv[])
 {
  long int i;
    pthread_attr_t attr;
-
+   //checking for command line input
    if (argc != 2) {
 
-   fprintf(stderr,"usage: fibthread <integer value>\n");
+   fprintf(stderr,"usage: ./fibonacci <integer value>\n");
 
    return -1;
 
    }
 
    int count = atoi(argv[1]);
-
+   //checking command line if empty
    if (count < 1) {
 
    fprintf(stderr,"%d must be>= 1\n", count);
@@ -68,7 +69,7 @@ int main(int argc, char *argv[])
    pthread_mutex_destroy(&mutex);
 
 }
-
+//thread intstructions
 void *genFibo(void *param)
 
 {
@@ -79,12 +80,12 @@ void *genFibo(void *param)
 
    pthread_mutex_unlock(&mutex);
 
+   sum = sum + fibonacci((long int)param);
    pthread_exit(0);
 
 }
-
+//fibonacci algorithm function
 int fibonacci (int x)
-
 {
 
    if (x <= 1) {

@@ -4,12 +4,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+//initializing mutex
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+//initializing barrier
 pthread_barrier_t barrier;
 
 int SharedVariable = 0;
 
+//Given code modified to include barrier/mutex
 void *SimpleThread(void* which)
 {
 	long int tid;
@@ -38,6 +40,7 @@ int main(int argc, char *argv[])
 	int num_t, i;
 	int rc;
 	char str[50];
+    //validationg command line argument count
 	if(argc <2)
 	{
 		printf("Invalid number of commands /thread [num]\n");
@@ -47,6 +50,7 @@ int main(int argc, char *argv[])
 	
 	int length = strlen(str);
 
+    //checking command line for int argument only
 	for(i = 0; i < length; i++ )
 	{
 		if(!isdigit(argv[1][i]))
@@ -59,30 +63,34 @@ int main(int argc, char *argv[])
 	}
 	printf("Success!\n");
 
-           num_t = atoi(argv[1]);
+    num_t = atoi(argv[1]);
+    //validating for umbers only on commandline input
 	if(num_t < 0)
 	{
 	   printf("Error; parameter should be positive number");
 	   exit(-1);
 
 	}
+	//barrier declaration
 	rc = pthread_barrier_init(&barrier, NULL, num_t);
 	
 	printf("from commandline: %d\n", argc);
 
 	long int j;
 	pthread_t tid[num_t];
+    //creating threads
 	for(j =0; j<num_t ; j++)
 	{ 
 	    	
 	  pthread_create(&tid[j], NULL, SimpleThread, (void *)j);
 	     
 	}
-	
+	//closing threads
  	for(j = 0; j < num_t; j++)
 	{
 	   pthread_join(tid[j], NULL);
-	}	
+	}
+	detstroy
 	return 0;
 }
  
