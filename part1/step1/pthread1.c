@@ -5,11 +5,9 @@
 #include <stdlib.h>
 
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_barrier_t barrier;
-
 int SharedVariable = 0;
 
+//given code sample
 void *SimpleThread(void* which)
 {
 	long int tid;
@@ -38,6 +36,8 @@ int main(int argc, char *argv[])
 	int num_t, i;
 	int rc;
 	char str[50];
+
+	//validating command line argument count
 	if(argc <2)
 	{
 		printf("Invalid number of commands /thread [num]\n");
@@ -46,7 +46,8 @@ int main(int argc, char *argv[])
 	strcpy(str, argv[1]);
 	
 	int length = strlen(str);
-
+	
+	//validating command line for integers only
 	for(i = 0; i < length; i++ )
 	{
 		if(!isdigit(argv[1][i]))
@@ -59,7 +60,9 @@ int main(int argc, char *argv[])
 	}
 	printf("Success!\n");
 
-           num_t = atoi(argv[1]);
+        num_t = atoi(argv[1]);
+	
+	//checking for positing integers only
 	if(num_t < 0)
 	{
 	   printf("Error; parameter should be positive number");
@@ -67,8 +70,6 @@ int main(int argc, char *argv[])
 
 	}
 
-
-	
 	printf("from commandline: %d\n", argc);
 
 	long int j;
