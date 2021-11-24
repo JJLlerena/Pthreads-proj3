@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
    }
 
    printf("\n");
-
+   printf("sum = 0 %ld\n", sum);
    pthread_mutex_destroy(&mutex);
 
 }
