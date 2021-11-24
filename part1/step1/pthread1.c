@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
-//#define RAND_MAX 200
+
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrier;
@@ -17,17 +17,17 @@ void *SimpleThread(void* which)
 	int num, val;
 	for(num = 0; num < 20; num++)
 	{
-#ifdef PHTHREAD_SYNC
+
 		if(random() > RAND_MAX/2)
 			usleep(10);
-#endif
-		pthread_mutex_lock(&mutex);
+
+
 		val = SharedVariable;
 		printf("*** thread %ld sees value %d\n",tid, val);
 		SharedVariable = val + 1;
-		pthread_mutex_unlock(&mutex);
+	
 	}
-	pthread_barrier_wait(&barrier);
+
 
 	val = SharedVariable;
 	printf("Thread %ld see final value %d\n", tid, val);
@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
 	   exit(-1);
 
 	}
-	
-	rc = pthread_barrier_init(&barrier, NULL, num_t);
+
+
 	
 	printf("from commandline: %d\n", argc);
 
