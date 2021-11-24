@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
    }
 
    // print resulting array
-   pritnf("0");
+   printf("0");
    for (i = 0; i < in;i++) {
 
    printf("%d ", fib[i]);
